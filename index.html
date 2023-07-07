@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/music.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="music-player">
+        <nav>
+          <div class="circle">
+            <i class="fa-solid fa-angle-left"></i>
+          </div>
+
+          <div class="circle">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+        </nav>
+        <img
+          src="./images/artworks-000145401932-yh68yo-t500x500.jpg"
+          id="songImg"
+        />
+        <h1>A Thousand Years</h1>
+        <p>Christina Perri</p>
+        <audio id="myAudio">
+          <source
+            src="./media/Calm-Down-Calm-Down(PaglaSongs).mp3"
+            type="audio/mpeg"
+            id="songSource"
+          />
+        </audio>
+        <input type="range" value="0" id="progress" />
+        <div class="controls">
+          <div><i class="fa-solid fa-backward"></i></div>
+          <div onclick="playPause()" id="controlDiv">
+            <i class="fa-solid fa-play" id="controlIcon"> </i>
+          </div>
+          <div id="nextSong"><i class="fa-solid fa-forward"></i></div>
+        </div>
+      </div>
+    </div>
+    <button id="showSong">showSong</button>
+  </body>
+  <script src="./js/all.min.js"></script>
+  <script src="js/Music.js"></script>
+</html>
