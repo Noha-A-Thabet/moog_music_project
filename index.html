@@ -20,31 +20,35 @@
             <i class="fa-solid fa-bars"></i>
           </div>
         </nav>
-        <img
-          src="./images/artworks-000145401932-yh68yo-t500x500.jpg"
-          id="songImg"
-        />
-        <h1>A Thousand Years</h1>
-        <p>Christina Perri</p>
+        <img src="" id="songImg" />
+        <h1 id="songName"></h1>
+        <p id="singer"></p>
         <audio id="myAudio">
-          <source
-            src="./media/Calm-Down-Calm-Down(PaglaSongs).mp3"
-            type="audio/mpeg"
-            id="songSource"
-          />
+          <source type="" id="songSource" />
         </audio>
         <input type="range" value="0" id="progress" />
         <div class="controls">
-          <div><i class="fa-solid fa-backward"></i></div>
+          <div id="prevSong">
+            <i class="fa-solid fa-backward"></i>
+          </div>
           <div onclick="playPause()" id="controlDiv">
             <i class="fa-solid fa-play" id="controlIcon"> </i>
           </div>
-          <div id="nextSong"><i class="fa-solid fa-forward"></i></div>
+          <div id="nextSong">
+            <i class="fa-solid fa-forward" id="nextSong"></i>
+          </div>
+          <div id="favourite">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <div id="volume">
+            <i class="fa-solid fa-volume-low"></i>
+          </div>
+          <input type="range" id="volumeRange" min="0" max="100" value="50" />
         </div>
       </div>
     </div>
     <button id="showSong">showSong</button>
+    <script src="./js/all.min.js"></script>
+    <script src="js/Music.js"></script>
   </body>
-  <script src="./js/all.min.js"></script>
-  <script src="js/Music.js"></script>
 </html>
