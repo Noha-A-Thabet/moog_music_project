@@ -1,54 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/music.css" />
-    <link rel="stylesheet" href="css/all.min.css" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <div class="container">
-      <div class="music-player">
-        <nav>
-          <div class="circle">
-            <i class="fa-solid fa-angle-left"></i>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/music.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
 
-          <div class="circle">
-            <i class="fa-solid fa-bars"></i>
-          </div>
-        </nav>
-        <img src="" id="songImg" />
-        <h1 id="songName"></h1>
-        <p id="singer"></p>
-        <audio id="myAudio">
-          <source type="" id="songSource" />
-        </audio>
-        <input type="range" value="0" id="progress" />
-        <div class="controls">
-          <div id="prevSong">
-            <i class="fa-solid fa-backward"></i>
-          </div>
-          <div onclick="playPause()" id="controlDiv">
-            <i class="fa-solid fa-play" id="controlIcon"> </i>
-          </div>
-          <div id="nextSong">
-            <i class="fa-solid fa-forward" id="nextSong"></i>
-          </div>
-          <div id="favourite">
-            <i class="fa-solid fa-heart"></i>
-          </div>
-          <div id="volume">
-            <i class="fa-solid fa-volume-low"></i>
-          </div>
-          <input type="range" id="volumeRange" min="0" max="100" value="50" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="">
+    <!-- start Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-white">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="./images/music-logo-png-2352.png" alt="" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <i class="fa-solid fa-message"></i>
+            </li>
+            <li class="nav-item">
+              <i class="fa-solid fa-user-group"></i>
+            </li>
+            <li class="nav-item">
+              <i class="fa-solid fa-bell"></i>
+            </li>
+            <li class="nav-item">
+              <i class="fa-solid fa-user"></i>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-    <button id="showSong">showSong</button>
-    <script src="./js/all.min.js"></script>
-    <script src="js/Music.js"></script>
-  </body>
+    </nav>
+    <!-- end Navbar -->
+
+    <!-- start main section -->
+    <section class="parentSection">
+      <section class="iconsbar">
+        <ul>
+          <li>
+            <i class="fa-solid fa-magnifying-glass fa-xl"></i> <br />
+            Explore
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <i class="fa-solid fa-bookmark fa-xl"></i> <br />
+            Library
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <i class="fa-solid fa-headset fa-xl"></i> <br />
+            Mood
+          </li>
+        </ul>
+      </section>
+
+      <section class="library">
+        <h4>Your Library</h4>
+        <ul>
+          <li><i class="fa-solid fa-heart"></i> <span>Likes</span></li>
+          <li><i class="fa-solid fa-download"></i> <span>Downloads</span></li>
+          <li>
+            <i class="fa-solid fa-play"></i> <span>Recently Played</span>
+          </li>
+
+          <li>
+            <i class="fa-regular fa-rectangle-list"></i> <span>Playlist</span>
+          </li>
+          <li><i class="fa-solid fa-music"></i> <span>Albums</span></li>
+          <li><i class="fa-solid fa-microphone"></i> <span> Artist</span></li>
+        </ul>
+      </section>
+
+      <section class="content">
+        <!-- start Top Artitst -->
+        <div class="topArtistHeading container">
+          <h3 class="">Top Artists:</h3>
+          <section class="container topArtist" id="displayArtist"></section>
+        </div>
+        <!-- end Top Artitst -->
+
+        <!-- start Albums -->
+        <div class="topAlbumsHeading container">
+          <h3>Albums:</h3>
+          <section class="container topAlbums" id="displayAlbums"></section>
+        </div>
+        <!-- end albums -->
+        <!-- start track -->
+        <div id="track">
+          <h3>Now Playing</h3>
+
+          <div class="songDetails">
+            <img src="" id="songImg" class="coverImg" />
+            <div class="songText">
+              <h1 id="songName" class="song"></h1>
+              <p id="singer" class="singer"></p>
+            </div>
+            <input type="range" value="0" id="progress" />
+            <div id="songInfo"></div>
+          </div>
+
+          <div class="controls">
+            <div id="prevSong">
+              <i class="fa-solid fa-backward"></i>
+            </div>
+            <div onclick="playPause()" id="controlDiv">
+              <i class="fa-solid fa-play" id="controlIcon"> </i>
+            </div>
+            <div id="nextSong">
+              <i class="fa-solid fa-forward" id="nextSong"></i>
+            </div>
+            <div id="favourite">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <div id="volume">
+              <i class="fa-solid fa-volume-low"></i>
+            </div>
+            <input type="range" id="volumeRange" min="0" max="100" value="50" />
+            <br>
+          </div>
+          <audio id="myAudio">
+            <source type="" id="songSource" class="audioSrc" />
+          </audio>
+        </div>
+        <!-- start fav track -->
+
+        <div id="favouriteSection">
+          <h3>Your Library</h3>
+          <section class="favCart">
+            <div>
+              <img class="favImg" src="./images/ab67616d0000b273f0a6249ccbc3b0722efbdc6b.jpg" alt="">
+              <i id="fa-solid fa-heart"></i>
+            </div>
+            <p class="favArtist">Nej</p>
+            <p class="favSong">Paro</p>
+          </section>
+        </div>
+        <!-- end fav track -->
+
+      </section>
+  
+      <!-- Bootstrap -->
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous">
+      </script>
+
+      <script src="./js/all.min.js"></script>
+      <script src="js/Music.js"></script>
+      <script src="./js/Fav.js"></script>
+</body>
+
 </html>

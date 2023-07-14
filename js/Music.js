@@ -13,7 +13,7 @@ let volumeRange = document.getElementById("volumeRange");
 let songImg = document.getElementById("songImg");
 let songName = document.getElementById("songName");
 let singer = document.getElementById("singer");
-let favourite = document.getElementById("favourite");
+
 
 // change volume range
 volumeRange.addEventListener("change", function volumeRange(e) {
@@ -46,9 +46,7 @@ function playPause() {
           controlIcon.classList.add('fa-solid', "fa-pause");
           controlIcon.classList.remove('fa-solid', "fa-play");
           controlDiv.innerHTML = '<i class="fa-solid fa-pause"></i>';
-
      }
-
 }
 
 myAudio.onloadedmetadata = function () {
@@ -68,23 +66,22 @@ progress.onchange = function () {
 }
 
 
-let showSong = document.getElementById("showSong");
 
 async function getData() {
-     const url = 'https://spotify23.p.rapidapi.com/tracks/?ids=514rhnksEwHUh6LxXsQ4Y9%2C76OGwb5RA9h4FxQPT33ekc%2C6hgoYQDUcPyCz7LcTUHKxa%2C6zvHwijlnwqjS6d46yAffi%2C6z5Yh7kOKeLjqIsNdokIpU%2C';
+
+     const url = 'https://spotify23.p.rapidapi.com/tracks/?ids=27tNWlhdAryQY04Gb2ZhUI%2C5xEM5hIgJ1jjgcEBfpkt2F%2C3bNv3VuUOKgrf5hu3YcuRo%2C4VrWlk8IQxevMvERoX08iC%2C6z5Yh7kOKeLjqIsNdokIpU';
      const options = {
           method: 'GET',
           headers: {
-               'X-RapidAPI-Key': 'e42f066744msh00a021b82a2027ep1ecb87jsn20389b74f394',
+               'X-RapidAPI-Key': 'fadb881c8emsh869a11fc76d987ap1561cejsn6bbd864a80a1',
                'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
           }
      };
+
      try {
 
           const response = await fetch(url, options);
           const result = await response.json();
-
-
           let index = 0;
           if (result.tracks && result.tracks.length > 0) {
                let song = result.tracks[index].preview_url;
@@ -99,11 +96,6 @@ async function getData() {
                     singer.textContent = singerName;
                     myAudio.load();
                     myAudio.play();
-
-                    // function addToFavourite 
-                    favourite.addEventListener("click", function addToFavourite(name, singer, img) {
-                         console.log(audioName, song, cover)
-                    })
 
                     // previous button
                     prevSong.addEventListener("click", function () {
@@ -162,30 +154,91 @@ async function getData() {
                console.log("No tracks found in the response.");
           }
 
-
-          for (let x = 0; x < result.tracks.length; x++) {
-
-               // console.log(result.tracks[x])
-               // Album Name
-               let albumName = result.tracks[x].name;
-               // console.log("Album Name : " + albumName)
-               // artist name
-               let artistName = result.tracks[x].artists[0].name
-               // console.log("artist name : " + artistName)
-               // artist Image
-               let artistImage = result.tracks[x].album.images[0].url
-               // console.log(artistImage)
-               // song
-
-               // let song = result.tracks[x].preview_url;
-          }
-
      } catch (error) {
           console.log(error);
      }
 } getData()
 
+let displayArtist = document.getElementById("displayArtist")
+
+// function Get Artists
+async function getArtist() {
+     const url = 'https://spotify23.p.rapidapi.com/artists/?ids=7H55rcKCfwqkyDFH9wpKM6%2C5YGY8feqx7naU7z4HrwZM6%2C0X2BH1fck6amBIoJhDVmmJ%2C4dpARuHxo51G3z768sgnrY%2C1uNFoZAHBGtllmzznpCI3s';
+     const options = {
+          method: 'GET',
+          headers: {
+               'X-RapidAPI-Key': 'fadb881c8emsh869a11fc76d987ap1561cejsn6bbd864a80a1',
+               'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+          }
+     };
+     try {
+          const response = await fetch(url, options);
+          const result = await response.json();
+
+          for (let x = 0; x < result.artists.length; x++) {
+               let artistImg = document.createElement("IMG");
+               let artistName = document.createElement("p");
+               let cart = document.createElement("div");
+
+               artistImg.src += result.artists[x].images[0].url;
+               artistName.textContent += result.artists[x].name;
+               artistImg.classList.add("artistImg");
+               cart.classList.add("cart")
+               artistName.classList.add("artistName")
+
+               displayArtist.appendChild(cart);
+               cart.appendChild(artistImg)
+               cart.appendChild(artistName)
+          }
+     } catch (error) {
+          console.error(error);
+     }
+}
+getArtist()
+
+// function getAlbums
+let displayAlbums = document.getElementById("displayAlbums")
+
+async function getAlbums() {
+     const url = 'https://spotify23.p.rapidapi.com/albums/?ids=07w0rG5TETcyihsEIZR3qG%2C1ATL5GLyefJaxhQzSPVrLX%2C1P4eCx5b11Tfmi4s1GmWmQ%2C1SqSBUPX7fi4qQljiOOhVl%2C22wrMmdQzYn17smtugMOAk';
+     const options = {
+          method: 'GET',
+          headers: {
+               'X-RapidAPI-Key': 'fadb881c8emsh869a11fc76d987ap1561cejsn6bbd864a80a1',
+               'X-RapidAPI-Host': 'spotify23.p.rapidapi.com'
+          }
+     };
+
+     try {
+          const response = await fetch(url, options);
+          const result = await response.json();
+          let albums = result.albums;
+          for (let x = 0; x < albums.length; x++) {
+               let albumInfo = albums[x];
+               let albumName = albumInfo.name;
+               let albumImage = albumInfo.images[0].url
 
 
+               let img = document.createElement("IMG");
+               let name = document.createElement("p");
+               let cart = document.createElement("div");
+
+               img.src += albumImage;
+               name.textContent += albumName;
+               img.classList.add("albumImg");
+
+               cart.classList.add("cart")
+               name.classList.add("albumName")
+
+               displayAlbums.appendChild(cart);
+               cart.appendChild(img)
+               cart.appendChild(name)
+          }
+
+     } catch (error) {
+          console.error(error);
+     }
+}
+getAlbums()
 
 
