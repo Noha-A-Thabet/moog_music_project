@@ -62,7 +62,7 @@
      display: flex;
      flex-wrap: wrap;
      flex-direction: column;
-     padding: 20px;
+     padding: 20px 30px 20px 20px;
      list-style: none;
      text-align: center;
 }
@@ -105,38 +105,47 @@
 
 .fa-heart {
      color: rgb(159, 157, 254);
+     ;
+     padding-right: 20px;
 }
 
 .fa-download {
      color: rgb(77, 154, 220);
+     ;
+     padding-right: 20px;
 }
 
 .fa-play {
      color: rgb(134, 100, 155);
+     ;
+     padding-right: 10px;
 }
 
 .fa-plus {
-     color: rgb(233, 100, 176)
+     color: rgb(233, 100, 176);
+     padding-right: 10px;
 }
 
 .fa-rectangle-list {
      color: rgb(129, 208, 217);
+     ;
+     padding-right: 10px;
 }
 
 .fa-music {
      color: rgb(245, 204, 131);
+     padding-right: 10px;
 }
 
 .fa-microphone {
-     color: rgb(123, 161, 243)
+     color: rgb(123, 161, 243);
+     padding-right: 10px;
 }
 
 .content {
      justify-content: flex-end;
      width: 77vw;
      height: 98vh;
-
-
      background-color: rgb(27, 28, 29);
 }
 
@@ -279,13 +288,17 @@
 /* start afav section */
 #favouriteSection {
      width: 100%;
+     /* height: 800px !important; */
      margin-top: 140px;
      background-color: #2B2D2F;
+     border: 2px solid white;
+     overflow-y: scroll;
+
 }
 
 
 #favouriteSection h3 {
-     text-align: left;
+     text-align: center;
      padding: 0 0 20px 0;
      color: white;
      font-size: 35px;
@@ -300,16 +313,25 @@
 }
 
 /* end audio section */
+/* start displaySongs  */
+.displaySongs {
+     border: 2px solid red;
+     display: grid;
+     grid-template-columns: auto auto;
+     height: 400px;
+     background-color: #2B2D2F;
+}
+
+/* end displaySongs  */
 
 #track {
-     border: 2px solid green;
      height: 400px;
      background-color: #2B2D2F;
 }
 
 #track h3 {
-     text-align: left;
-     padding: 0 0 20px 0;
+     text-align: center;
+     padding: 20px 0 20px 0;
      color: white;
      font-size: 35px;
      font-weight: bold;
